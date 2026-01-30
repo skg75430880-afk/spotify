@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Roboto', Arial, sans-serif;  
+}
+
+.left {
+  width: 25vw;
+  padding: 10px;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;   
+}
+
+.right {
+  width: 75vw;
+  margin: 14px 0px;
+  position: relative;
+}
+
+.p-1 {
+  padding: 10px;
+}
+
+.home ul li {
+  list-style: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  gap: 15px;
+  display: flex;
+  padding-top: 14px;
+  font-weight: bold;
+}
+
+.invert {
+  filter: invert(1);
+}
+
+.bg-black {
+  background-color: black;
+  color: white;
+}
+
+.bg-grey {
+  background-color: #121212;
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.m-1 {
+  margin: 5px;
+}
+
+.library {
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#library-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  max-height: 500px; 
+   padding: 8px 0;
+}
+
+.library-text {
+  color: white;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.library-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.library-item:hover {
+  background: #232323;
+}
+
+.library-cover {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.library-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.library-title {
+  font-size: 1em;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.library-artist {
+  font-size: 0.9em;
+  color: #b3b3b3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.library-menu {
+  position: relative;
+  margin-left: 8px;
+}
