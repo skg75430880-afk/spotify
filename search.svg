@@ -1,0 +1,18 @@
+<svg width="160" height="30" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .label {
+      fill: black;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- Search Icon -->
+  <circle cx="15" cy="15" r="12" fill="black"/>
+  <circle cx="14" cy="13" r="4" stroke="white" stroke-width="2" fill="none"/>
+  <line x1="17" y1="16" x2="21" y2="20" stroke="white" stroke-width="2"/>
+
+  <!-- Text -->
+  <text x="35" y="20" class="label">Search</text>
+</svg>

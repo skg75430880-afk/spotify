@@ -1,0 +1,17 @@
+<svg width="150" height="30" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .label {
+      fill: black;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- Home Icon -->
+  <circle cx="15" cy="15" r="12" fill="black"/>
+  <path d="M10 18 V13 L15 9 L20 13 V18 H17 V14 H13 V18 Z" fill="white"/>
+
+  <!-- Text -->
+  <text x="35" y="20" class="label">Home</text>
+</svg>

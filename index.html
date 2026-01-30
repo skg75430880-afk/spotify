@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify - Web Player: Music For Everyone</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="utility.css">
+</head>
+<body>
+  <div class="container flex bg-black">
+    <!-- Left Sidebar -->
+    <div class="left">
+      <div class="home bg-grey rounded m-1 p-1">
+        <div class="logo">
+          <img src="logo.svg" alt="Logo">
+        </div>
+        <ul>
+          <li><img class="invert" src="home.svg" alt="Home"></li>
+          <li id="sidebar-search-li">
+            <img class="invert" src="search.svg" alt="Search" id="sidebar-search-icon">
+            <input type="text" id="sidebar-search-input" placeholder="Search songs..." >
+          </li>
+        </ul>
+      </div>
+
+      <div class="library bg-grey rounded m-1 p-1" style="position: relative;">
+        <div class="heading" style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center;">
+            <img src="playlist.svg" alt="playlist" class="icon">
+            <span class="library-text">Your library</span>
+          </div>
+          <button class="library-plus-btn" id="library-plus-btn" aria-label="Add">
+            <span id="library-plus-icon">+</span>
+          </button>
+          <div class="library-menu" id="library-menu" style="display:none; position: absolute; left: 0; top: 48px;">
+            <div class="library-menu-option" data-action="playlist">
+              <strong>Playlist</strong><br>
+              <span class="library-menu-desc">Build a playlist with songs, or episodes</span>
+            </div>
+            <hr>
+            <div class="library-menu-option" data-action="blend">
+              <strong>Blend</strong><br>
+              <span class="library-menu-desc">Mix up your tastes with friends</span>
+            </div>
+            <hr>
+            <div class="library-menu-option" data-action="folder">
+              <strong>Folder</strong><br>
+              <span class="library-menu-desc">Organize your playlists</span>
+            </div>
+          </div>
+        </div>
+        <!-- User's library list -->
+        <ul id="library-list" style="margin:10px 0 0 0; padding:0; list-style:none; color:white;"></ul>
+      </div>
+
+      <div class="footer">
+        <div><a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a></div>
+        <div><a href="https://www.spotify.com/jp/privacy/"><span>Privacy Center</span></a></div>
+        <div><a href="https://www.spotify.com/jp/legal/privacy-policy/"><span>Privacy Policy</span></a></div>
+        <div><a href="https://www.spotify.com/jp/legal/cookies-policy/"><span>Cookies</span></a></div>
+        <div><a href="https://www.spotify.com/jp/legal/privacy-policy/#3"><span>About Ads</span></a></div>
+        <div><a href="https://www.spotify.com/jp/accessibility/"><span>Accessibility</span></a></div>
+      </div>
+    </div>
+
+    <!-- Right Main Section -->
+    <div class="right bg-grey rounded">
+      <div class="header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="nav">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </div>
+        <div class="buttons">
+          <button class="btn-signup">Signup</button>
+          <button class="btn-login">Login</button>
+        </div>
+      </div>
+
+      <!-- Playlist Section -->
+      <div class="spotifyPlaylist">
+        <h1>Spotify Playlists</h1>
+        <div class="cardContainer">
+          <!-- Cards rendered dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Playbar -->
+      <div class="playbar">
+        <!-- Current song info -->
+        <div class="current-song">
+          <img class="cover-img" src="" alt="cover">
+          <div class="song-info">
+            <span class="song-title"></span>
+            <span class="song-artist"></span>
+          </div>
+        </div>
+        <!-- Controls -->
+        <div class="controls">
+          <button class="control-btn" id="prev-btn">⏮️</button>
+          <button class="control-btn" id="play-btn">▶️</button>
+          <button class="control-btn" id="next-btn">⏭️</button>
+        </div>
+        <!-- Seek bar -->
+        <div class="progress-bar">
+          <input type="range" id="seek-bar" min="0" max="100" value="0">
+        </div>
+        <!-- Volume and favorite -->
+        <div class="extra-controls" style="display: flex; align-items: center; gap: 10px; padding: 10px;">
+          <label for="volume" style="color: white;">Volume:</label>
+          <input type="range" id="volume" min="0" max="100" value="80">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Message -->
+  <div id="toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1ED760; color: black; padding: 10px 20px; border-radius: 5px; display: none; font-weight: bold; z-index: 999;"></div>
+
+  <!-- Audio Element -->
+  <audio id="audio-player" src="" preload="metadata"></audio>
+
+  <!-- Signup Modal -->
+  <div id="signup-modal" class="modal" style="display:none;">
+    <div class="signup-modal-content">
+      <img src="logo.svg" alt="Spotify Logo" class="signup-logo">
+      <h1 class="signup-title">Sign up to<br>start listening</h1>
+      <label class="signup-label" id="signup-label" for="signup-email">Email address</label>
+      <input type="email" id="signup-email" class="signup-input" placeholder="name@domain.com" required>
+      <input type="tel" id="signup-phone" class="signup-input" placeholder="Enter phone number" style="display:none;" required>
+      <a href="#" class="signup-link" id="toggle-signup-method">Use phone number instead.</a>
+      <button id="signup-next" class="signup-next-btn">Next</button>
+      <div class="signup-divider"><span>or</span></div>
+      <button class="signup-provider-btn" id="signup-google-btn">
+        <!-- Inline SVG for Google icon -->
+        <svg class="provider-icon" width="22" height="22" viewBox="0 0 48 48"><g><path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.6 33.1 29.8 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.9 0 5.6 1 7.7 2.7l6.4-6.4C34.6 5.1 29.6 3 24 3 12.9 3 4 11.9 4 23s8.9 20 20 20c11 0 19.7-8 19.7-20 0-1.3-.1-2.7-.2-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15.5 16.1 19.4 13 24 13c2.9 0 5.6 1 7.7 2.7l6.4-6.4C34.6 5.1 29.6 3 24 3c-7.1 0-13.1 3.7-16.7 9.7z"/><path fill="#FBBC05" d="M24 43c5.6 0 10.6-1.9 14.5-5.1l-6.7-5.5C29.6 34.9 27 36 24 36c-5.8 0-10.6-2.9-13.7-7.2l-7 5.4C6.9 39.3 14.6 43 24 43z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.7c-1.2 3.2-4.1 5.5-7.7 5.5-5.8 0-10.6-4.7-10.6-10.5s4.8-10.5 10.6-10.5c2.6 0 5 .9 6.8 2.4l6.4-6.4C34.6 5.1 29.6 3 24 3c-7.1 0-13.1 3.7-16.7 9.7z"/></g></svg>
+        Sign up with Google
+      </button>
+      <button class="signup-provider-btn" id="signup-apple-btn">
+        <!-- Inline SVG for Apple icon -->
+        <svg class="provider-icon" width="22" height="22" viewBox="0 0 24 24"><path fill="#fff" d="M16.365 1.43c0 1.14-.93 2.07-2.07 2.07-.06 0-.12 0-.18-.01.01-.13.02-.26.02-.39 0-1.14.93-2.07 2.07-2.07.06 0 .12 0 .18.01-.01.13-.02.26-.02.39zm3.37 6.99c-1.86-.11-3.43 1.07-4.32 1.07-.89 0-2.26-1.04-3.73-1.01-1.92.03-3.7 1.12-4.68 2.85-2 3.47-.51 8.6 1.43 11.42.95 1.36 2.08 2.89 3.57 2.83 1.42-.06 1.96-.91 3.68-.91 1.72 0 2.2.91 3.7.89 1.53-.03 2.49-1.38 3.43-2.75.6-.88.84-1.34 1.32-2.35-3.47-1.33-4.01-6.34.8-7.6-.15-.44-.29-.89-.44-1.33-.97-2.7-3.56-2.97-4.13-3.01z"/></svg>
+        Sign up with Apple
+      </button>
+      <div class="signup-footer">
+        Already have an account? <a href="#" id="open-login" class="signup-link">Log in here.</a>
+      </div>
+      <span class="close" id="close-signup">&times;</span>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal" style="display:none;">
+    <div class="signup-modal-content">
+      <img src="logo.svg" alt="Spotify Logo" class="signup-logo">
+      <h1 class="signup-title">Log in to Spotify</h1>
+      <label class="signup-label" for="login-email">Email address</label>
+      <input type="email" id="login-email" class="signup-input" placeholder="name@domain.com" required>
+      <button id="login-next" class="signup-next-btn">Log In</button>
+      <div class="signup-footer">
+          Don't have an account? <a href="#" id="open-signup" class="signup-link">Sign up here.</a>
+      </div>
+      <span class="close" id="close-login">&times;</span>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
