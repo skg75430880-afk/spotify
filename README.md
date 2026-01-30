@@ -34,7 +34,7 @@ A Spotify-inspired front-end music streaming application built using HTML, CSS, 
 - Mobile-first UI improvements
 
 ## 👨‍💻 Author
-**Pranav**  
+**suruti kumari**  
 B.Tech Student | Front-End Developer  
   
 📁 GitHub Repository: https://github.com/your-username/spotify-clone
