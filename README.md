@@ -3,13 +3,8 @@
 A Spotify-inspired front-end music streaming application built using HTML, CSS, and JavaScript. This project recreates the core UI and audio playback features of Spotify, focusing on clean design, interactivity, and responsive behavior.
 
 ## 🌐 Live Demo
-🔗 Live Project: # 🎵 Spotify Clone
-
-A Spotify-inspired front-end music streaming application built using HTML, CSS, and JavaScript. This project recreates the core UI and audio playback features of Spotify, focusing on clean design, interactivity, and responsive behavior.
-
-## 🌐 Live Demo
-🔗 Live Project:   
-📁 GitHub Repository: skg75430880-afk/spotify
+🔗 Live Project: https://skg75430880-afk.github.io/spotify/
+📁 GitHub Repository: https://github.com/skg75430880-afk/spotify
 
 ## 🚀 Features
 - Play and pause audio tracks
